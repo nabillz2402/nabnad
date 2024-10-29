@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Untuk Tuan Putri</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Surat Untuk Tuan Putri ❤️</h1>
+        <button id="startButton">Silahkan Di Pecet Sayang</button>
+        <div id="messageContainer" class="hidden">
+            <p id="typingText"></p>
+        </div>
+    </div>
+    
+    <script>
+        // JavaScript untuk efek ketikan
+        document.getElementById('startButton').addEventListener('click', function() {
+            const messages = [
+                "alllowww Sayang! ❤️",
+                "abinn mintaa maaaap yaa sayangg🙏 udaa bikinn kamuu kesel tadi..",
+                "maapinn abinn yaa sayaangg..🙏🙏",
+                "haruss pokoknaaa maapinn><.. yayaya,..hehee😄",
+                "maaap yaaa kaloo abinn ngeselin, hehehe><",
+                "abinn sayaangg juaaa❤️❤️❤️",
+                "lovyuuu sayangg! 💖"
+            ];
+
+            let messageIndex = 0;
+            let charIndex = 0;
+            const typingSpeed = 100; // Kecepatan pengetikan
+            const messageContainer = document.getElementById('messageContainer');
+            const typingText = document.getElementById('typingText');
+
+            // Tampilkan container pesan
+            messageContainer.classList.remove('hidden');
+
+            function typeMessage() {
+                if (charIndex < messages[messageIndex].length) {
+                    typingText.textContent += messages[messageIndex].charAt(charIndex);
+                    charIndex++;
+                    setTimeout(typeMessage, typingSpeed);
+                } else {
+                    // Pesan selesai, lanjutkan ke pesan berikutnya setelah jeda
+                    messageIndex++;
+                    if (messageIndex < messages.length) {
+                        charIndex = 0;
+                        setTimeout(() => {
+                            typingText.textContent = ''; // Hapus teks sebelumnya
+                            typeMessage();
+                        }, 1000); // Jeda 10 detik sebelum pesan berikutnya
+                    }
+                }
+            }
+
+            // Mulai ketikan pesan pertama
+            typeMessage();
+        });
+    </script>
+</body>
+</html>
